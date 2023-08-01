@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/22475804/114474255-346b1a00-9bcc-11eb-877f-0095c6fd5dba.jpg" height="200px" />
-  <h1 align="center">QR Code PIX - NodeJS and Browser</h1>
+  <h1 align="center">QR Code PIX</h1>
 </p>
 <br />
 
@@ -35,7 +35,7 @@ const qrCodePix = QrCodePix({
     key: 'test@mail.com.br', //or any PIX key
     name: 'Fulano de Tal',
     city: 'SAO PAULO',
-    transactionId: 'YOUR_TRANSACTION_ID', //max 25 characters
+    transactionId: 'YOUR_TRANSACTION_ID',
     message: 'Pay me :)',
     cep: '99999999',
     value: 150.99,
@@ -59,6 +59,7 @@ interface IParameter {
     transactionId?: string;
     message?: string;
     cep?: string;
+    notRepeatPayment?: boolean; //default: false
     currency?: number; //default: 986 ('R$')
     countryCode?: string; //default: 'BR'
 }
@@ -73,14 +74,6 @@ interface IResponse {
 
 ## Specification
 
-### Latest revision version: 3.0.2 (2022-02-04)
+### Latest revision version: 3.0.2 (2021-04-11)
 
 ### Specification by Bacen [(DOC)](https://www.bcb.gov.br/content/estabilidadefinanceira/forumpireunioes/AnexoI-PadroesParaIniciacaodoPix.pdf)
-
----
-
-## Donate
-
-### Contribute to keeping revisions up to date.
-
-<img src="https://user-images.githubusercontent.com/22475804/152584043-f4e28661-66e5-4fef-a0c0-25ddea08a41d.png" height="100px" />

@@ -27,7 +27,7 @@ describe('QRCode PIX Generate', () => {
             city: 'SAO PAULO',
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62070503***6304102F'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO62070503***6304EA8F'
         );
     });
     it('02 - Basic - Currency', async () => {
@@ -39,7 +39,7 @@ describe('QRCode PIX Generate', () => {
             currency: 986,
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62070503***6304102F'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO62070503***6304EA8F'
         );
     });
     it('03 - Basic - Value', async () => {
@@ -51,7 +51,7 @@ describe('QRCode PIX Generate', () => {
             value: 100.99,
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865406100.995802BR5913FULANO DE TAL6009SAO PAULO62070503***63049359'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865406100.995802BR5913Fulano de Tal6009SAO PAULO62070503***63044D9'
         );
     });
     it('04 - Basic - countryCode', async () => {
@@ -63,7 +63,7 @@ describe('QRCode PIX Generate', () => {
             countryCode: 'BR',
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62070503***6304102F'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO62070503***6304EA8F'
         );
     });
     it('05 - Basic - cep', async () => {
@@ -75,7 +75,7 @@ describe('QRCode PIX Generate', () => {
             cep: '85000100',
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO61088500010062070503***63041747'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO61088500010062070503***63047C4'
         );
     });
     it('06 - Basic - Transaction ID', async () => {
@@ -87,7 +87,7 @@ describe('QRCode PIX Generate', () => {
             transactionId: 'my_transaction_id',
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62210517my_transaction_id630461CE'
+            '00020101021126380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO62210517my_transaction_id6304C356'
         );
     });
     it('07 - Basic - message', async () => {
@@ -99,19 +99,19 @@ describe('QRCode PIX Generate', () => {
             message: 'is my message :)',
         });
         expect(response.payload()).toBe(
-            '00020126580014BR.GOV.BCB.PIX0116test@mail.com.br0216is my message :)5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62070503***63045A4E'
+            '00020101021126580014br.gov.bcb.pix0116test@mail.com.br0216is my message :)5204000053039865802BR5913Fulano de Tal6009SAO PAULO62070503***6304A91E'
         );
     });
-    it('ignore value zero', () => {
+    it('08 - Basic - notRepeatPayment', async () => {
         const response = QrCodePix({
             version: '01',
             key: 'test@mail.com.br',
             name: 'Fulano de Tal',
             city: 'SAO PAULO',
-            value: 0,
+            notRepeatPayment: true,
         });
         expect(response.payload()).toBe(
-            '00020126380014BR.GOV.BCB.PIX0116test@mail.com.br5204000053039865802BR5913FULANO DE TAL6009SAO PAULO62070503***6304102F'
+            '00020101021226380014br.gov.bcb.pix0116test@mail.com.br5204000053039865802BR5913Fulano de Tal6009SAO PAULO62070503***63047AA8'
         );
     });
     it('should not accept negative values', () => {
@@ -127,4 +127,4 @@ describe('QRCode PIX Generate', () => {
 });
 
 const qrCodeTest =
-    'data:image/png;base64,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';
+    'data:image/png;base64,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';
